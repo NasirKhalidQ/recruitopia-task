@@ -1,5 +1,30 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Repo from "./Repo";
+
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const axiosIns = axios.create({
+    baseURL: "https://api.github.com",
+  });
+
+  const [repos, setRepos] = useState([]);
+
+  useEffect(() => {
+    axiosIns.get("orgs/reactjs/repos?per_page=7").then(({ data }) => {
+      setRepos(data);
+    });
+  }, []);
+  return (
+    <div className="flex justify-center mt-20">
+      <div className="flex flex-col gap-2 border-4 border-purple-400 rounded-lg p-4">
+        {repos.map((repo) => (
+          <div>
+            <Repo repo={repo} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default App;

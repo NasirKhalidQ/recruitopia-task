@@ -17,10 +17,8 @@ function App() {
   return (
     <div className="flex justify-center mt-20">
       <div className="flex flex-col gap-2 border-4 border-purple-400 rounded-lg p-4">
-        {repos.map((repo) => (
-          <div>
-            <Repo repo={repo} />
-          </div>
+        {repos.map((repo, index) => (
+          <Repo key={index} repo={repo} />
         ))}
       </div>
     </div>

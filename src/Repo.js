@@ -15,9 +15,30 @@ export default function Repo({ repo }) {
                 </div>
                 <ChevronUp open={open} />
               </Disclosure.Button>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                If you're unhappy with your purchase for any reason, email us
-                within 90 days and we'll refund you in full, no questions asked.
+              <Disclosure.Panel className="px-4 flex divide-y-2 gap-y-1 flex-col pt-4 pb-2 text-sm text-gray-500">
+                <p className="pt-1">
+                  <span className="font-semibold">Name:</span> {repo.name}
+                </p>
+                <p className="pt-1">
+                  <span className="font-semibold">Description:</span>{" "}
+                  {repo.description}
+                </p>
+                <p className="pt-1">
+                  <span className="font-semibold">Number of Stars:</span>{" "}
+                  {repo.stargazers_count}
+                </p>
+                <p className="pt-1">
+                  <span className="font-semibold">Number of Forks:</span>{" "}
+                  {repo.forks_count}
+                </p>
+                <p className="pt-1">
+                  <span className="font-semibold">Number of Watchers:</span>{" "}
+                  {repo.watchers}
+                </p>
+                <p className="pt-1">
+                  <span className="font-semibold">Language:</span>{" "}
+                  {repo.language}
+                </p>
               </Disclosure.Panel>
             </>
           )}

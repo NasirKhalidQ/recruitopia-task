@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import ChevronUp from "./ChevronUp";
+import ChevronUp from "../assets/ChevronUp";
 
 export default function Repo({ repo }) {
   return (

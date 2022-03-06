@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "./Loading";
 import Repo from "./Repo";
 import useInfiniteScroll from "./useInfiniteScroll";
 
@@ -18,13 +19,12 @@ function App() {
   };
 
   const fetchNextPage = async () => {
-    await setPerPage(perPage + 7).then(() => {
-      fetchRepos();
-    });
+    await setPerPage(perPage + 7);
+    await fetchRepos();
   };
 
   const [repos, setRepos] = useState([]);
-  const [perPage, setPerPage] = useState(7);
+  const [perPage, setPerPage] = useState(8);
   const [isFetching, setIsFetching] = useInfiniteScroll(fetchNextPage);
 
   useEffect(() => {
@@ -32,15 +32,22 @@ function App() {
   }, [perPage]);
 
   return (
-    <div className="flex justify-center mt-20">
-      <div className="flex flex-col gap-2 border-4 border-purple-400 rounded-lg p-4">
-        {repos.map((repo, index) => (
-          <Repo key={index} repo={repo} />
-        ))}
+    <div className="flex justify-center pt-20 bg-gradient-to-r from-violet-500 to-fuchsia-500">
+      <div className="flex flex-col gap-2 border-4 border-black rounded-lg p-4">
+        {repos.length === 0 ? (
+          <div className=" flex justify-center py-96 px-44">
+            <Loading />
+          </div>
+        ) : (
+          <>
+            {repos.map((repo, index) => (
+              <Repo key={index} repo={repo} />
+            ))}
+          </>
+        )}
+
         <div className="flex justify-center mt-8">
-          <button className=" bg-purple-700 hover:opacity-80 text-white px-12 py-2 rounded">
-            Load more
-          </button>
+          {isFetching && <Loading />}
         </div>
       </div>
     </div>

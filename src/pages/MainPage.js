@@ -69,7 +69,7 @@ const MainPage = () => {
             Search
           </button>
         </div>
-        <div className="flex flex-col gap-2 border-4 border-black rounded-lg p-4 overflow-y-scroll">
+        <div className="flex flex-col gap-2 border-4 border-black rounded-lg p-4">
           {repos.length === 0 ? (
             <div className=" flex justify-center py-96 px-44">
               <Loading />
